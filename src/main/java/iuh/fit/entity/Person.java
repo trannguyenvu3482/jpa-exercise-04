@@ -3,6 +3,8 @@
  */
 package iuh.fit.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
@@ -31,7 +33,12 @@ import lombok.ToString;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Discriminator", discriminatorType = DiscriminatorType.STRING, columnDefinition = "varchar(255)")
-public class Person {
+public class Person implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "PersonID")

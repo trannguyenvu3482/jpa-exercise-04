@@ -3,6 +3,7 @@
  */
 package iuh.fit.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -23,15 +24,20 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class OnsiteCourse extends Course {
+public class OnsiteCourse extends Course implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "Days")
 	private String days;
 
 	@Column(name = "Location")
 	private String location;
 
-	@Column(name = "Time")
-	private LocalDateTime time;
+	@Column(name = "Time", columnDefinition = "datetime2")
+	private transient LocalDateTime time;
 
 	public OnsiteCourse(String title, int credits, String days, String location, LocalDateTime time) {
 		super(title, credits);

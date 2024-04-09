@@ -3,6 +3,8 @@
  */
 package iuh.fit.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class StudentGrade {
+public class StudentGrade implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int enrollmentID;

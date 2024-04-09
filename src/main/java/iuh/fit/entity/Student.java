@@ -3,10 +3,15 @@
  */
 package iuh.fit.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,9 +29,18 @@ import lombok.ToString;
 @ToString
 
 @Entity
-public class Student extends Person {
+public class Student extends Person implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "EnrollmentDate")
 	private LocalDateTime enrollmentDate;
+
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ToString.Exclude
+	private List<StudentGrade> studentGrades;
 
 	public Student(String firstName, String lastName, LocalDateTime enrollmentDate) {
 		super(firstName, lastName);

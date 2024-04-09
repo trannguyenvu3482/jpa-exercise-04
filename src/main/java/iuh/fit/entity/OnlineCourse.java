@@ -3,6 +3,8 @@
  */
 package iuh.fit.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -21,7 +23,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class OnlineCourse extends Course {
+public class OnlineCourse extends Course implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Column(name = "URL")
 	private String url;
 

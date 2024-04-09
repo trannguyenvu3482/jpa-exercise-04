@@ -19,7 +19,8 @@ import jakarta.persistence.Persistence;
  * @version 1.0
  * @created 2 Apr 2024 - 9:57:00 am
  */
-public class TestInstructor {
+
+class TestInstructor {
 	public EntityManagerFactory entityManagerFactory() {
 		return Persistence.createEntityManagerFactory("sql-server-driver");
 	}
@@ -63,6 +64,17 @@ public class TestInstructor {
 	void testGetAllInstructors() {
 		doInJPA(this::entityManagerFactory, entityManager -> {
 			entityManager.createQuery("select i from Instructor i", Instructor.class).getResultList()
+					.forEach(System.out::println);
+		});
+	}
+
+	@Test
+	void findInstructorByFirstNameOrLastNameMatch() {
+		doInJPA(this::entityManagerFactory, entityManager -> {
+			String matchString = "Novak";
+			entityManager.createQuery(
+					"select i from Instructor i where i.firstName like :matchString or i.lastName like :matchString",
+					Instructor.class).setParameter("matchString", "%" + matchString + "%").getResultList()
 					.forEach(System.out::println);
 		});
 	}

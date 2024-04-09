@@ -5,6 +5,7 @@ package iuh.fit.entity;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,7 +51,7 @@ public class Course {
 	@JoinColumn(name = "DepartmentID")
 	private Department department;
 
-	@ManyToMany
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "CourseInstructor", joinColumns = @JoinColumn(name = "CourseID"), inverseJoinColumns = @JoinColumn(name = "PersonID"))
 	@ToString.Exclude
 	private Set<Instructor> instructors;

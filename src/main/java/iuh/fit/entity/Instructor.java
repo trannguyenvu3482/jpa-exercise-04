@@ -3,6 +3,7 @@
  */
 package iuh.fit.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -28,7 +29,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Instructor extends Person {
+public class Instructor extends Person implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "HireDate")
 	private LocalDateTime hireDate;
 
